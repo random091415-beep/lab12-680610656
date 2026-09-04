@@ -1,14 +1,44 @@
+import TaskCard from "../components/TaskCard";
+import Sidebar from "../components/Sidebar";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import TaskInput from "../components/TaskInput";
+import { type TaskCardProps } from "../libs/Todolist";
+
 export default function TodolistPage() {
+  const title = "Todo List";
+  const tasks: TaskCardProps[] = [
+    {
+      id: "1",
+      title: "Read a book",
+      description: "Vite + React + Bootstrap + TS",
+      isDone: false,
+    },
+    {
+      id: "2",
+      title: "Write code",
+      description: "Finish project for class",
+      isDone: false,
+    },
+    {
+      id: "3",
+      title: "Deploy app",
+      description: "Push project to GitHub Pages",
+      isDone: true,
+    },
+  ];
   return (
     <div className="container-fluid min-vh-100">
       <div className="row h-100">
-        {/* ── 2) Sidebar (รับ props userName, type) ─────────────────────────── */}
-        <div className="col-2 p-0">
+        {
+          /* ── 2) Sidebar (รับ props userName, type) ─────────────────────────── */
+          <Sidebar userName={"kittiphob"} type={"admin"} />
+        }
+        {/* <div className="col-2 p-0">
           <aside
             className="d-flex align-items-start flex-column p-4 bg-primary min-vh-100"
             style={{ width: "auto", height: "100%", overflowY: "auto" }}
-            data-bs-theme="dark"
-          >
+            data-bs-theme="dark">
             <div className="flex-grow-1">
               <nav className="navbar align-items-start flex-column">
                 <h3 className="navbar-brand">Note App</h3>
@@ -23,8 +53,7 @@ export default function TodolistPage() {
                       className="nav-link dropdown-toggle"
                       role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
+                      aria-expanded="false">
                       <span className="d-md-inline px-2">My Stuffs</span>
                     </a>
                     <ul className="dropdown-menu p-2">
@@ -47,30 +76,46 @@ export default function TodolistPage() {
               <p className="text-white">chanadda :admin</p>
             </div>
           </aside>
-        </div>
+        </div> */}
 
         <div className="col-10 p-0 d-flex flex-column min-vh-100">
-          {/* ── 1) Header (ไม่รับ props) ────────────────────────────────────── */}
-          <header className="text-white bg-secondary p-2 w-100">
+          {
+            /* ── 1) Header (ไม่รับ props) ────────────────────────────────────── */
+            <Header />
+          }
+          {/* <header className="text-white bg-secondary p-2 w-100">
             <p className="m-4">Note App</p>
-          </header>
+          </header> */}
 
           <main className="flex-grow-1 p-4">
             <div className="container">
-              <h2 className="text-center">Todo List</h2>
+              <h2 className="text-center">{title}</h2>
 
-              {/* ── 3) TaskInput (ไม่รับ props) ──────────────────────────── */}
-              <div className="d-flex my-3">
+              {
+                /* ── 3) TaskInput (ไม่รับ props) ──────────────────────────── */
+                <TaskInput />
+              }
+              {/* <div className="d-flex my-3">
                 <input
                   className="form-control me-2"
                   type="text"
                   placeholder="Insert a task here.."
                 />
                 <button className="btn btn-primary px-4">Add</button>
-              </div>
+              </div> */}
 
-              {/* ── 4) Task (3 แถว) → แยกเป็น <TaskCard /> แล้ว .map() ─────── */}
-              <div className="card mb-3">
+              {
+                /* ── 4) Task (3 แถว) → แยกเป็น <TaskCard /> แล้ว .map() ─────── */
+                tasks.map((task) => (
+                  <TaskCard
+                    id={task.id}
+                    title={task.title}
+                    description={task.description}
+                    isDone={task.isDone}
+                  />
+                ))
+              }
+              {/* <div className="card mb-3">
                 <div className="card-body">
                   <div className="row align-items-center">
                     <div className="col-lg-4">
@@ -133,16 +178,23 @@ export default function TodolistPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </main>
 
-          {/* ── 5) Footer (รับ props year, fullName, studentId) ─────────────── */}
-          <footer className="text-center w-100">
+          {
+            /* ── 5) Footer (รับ props year, fullName, studentId) ─────────────── */
+            <Footer
+              year={"2026"}
+              fullName={"kittiphob intham"}
+              studentId={680610656}
+            />
+          }
+          {/* <footer className="text-center w-100">
             <p className="text-white bg-secondary p-4 m-0">
               Copyright © 2026 chanadda thanyaratthanon 6706200999
             </p>
-          </footer>
+          </footer> */}
         </div>
       </div>
     </div>
